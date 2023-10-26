@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: sum-calculator-service
+          uri: lb://sum-calculator-service
+          predicates:
+            - Path=/sumCalculator/**
+        - id: percentaje-service
+          uri: lb://percentaje-service
+          predicates:
+            - Path=/percentaje/**

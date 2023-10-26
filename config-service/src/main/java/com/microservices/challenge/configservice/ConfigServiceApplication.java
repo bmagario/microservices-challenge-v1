@@ -1,4 +1,4 @@
-package com.microservices.tenpo.configservice;
+package com.microservices.challenge.configservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
