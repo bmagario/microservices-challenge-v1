@@ -1,6 +1,6 @@
 server:
   port: 8080
-  
+
 eureka:
   client:
     fetch-registry: true
@@ -21,7 +21,7 @@ spring:
           uri: lb://sum-calculator-service
           predicates:
             - Path=/sumCalculator/**
-        - id: percentaje-service
-          uri: lb://percentaje-service
+        - id: percentage-service
+          uri: lb://percentage-service
           predicates:
-            - Path=/percentaje/**
+            - Path=/percentage/**
