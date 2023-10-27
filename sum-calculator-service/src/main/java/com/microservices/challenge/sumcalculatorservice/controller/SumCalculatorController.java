@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,9 +40,5 @@ public class SumCalculatorController {
                 PageRequest.of(page, size, Sort.by("timestamp").descending());
         Page<CallHistory> history = sumCalculatorService.getCallHistory(pageable);
         return ResponseEntity.ok(history);
-    }
-
-    private ResponseEntity<Double> fallBackGetPercentages(RuntimeException e) {
-        return new ResponseEntity("Cant get percentage", HttpStatus.OK);
     }
 }

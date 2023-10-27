@@ -11,5 +11,4 @@ public class SumCalculatorServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(SumCalculatorServiceApplication.class, args);
     }
-
 }
