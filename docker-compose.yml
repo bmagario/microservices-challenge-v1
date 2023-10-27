@@ -8,8 +8,6 @@ services:
     image: config-service-image:latest
     ports:
       - "8081:8081"
-    networks:
-      - microservices-challenge-network
 
   # Discovery Service
   discovery-service:
@@ -17,8 +15,6 @@ services:
     image: discovery-service-image:latest
     ports:
       - "8761:8761"
-    networks:
-      - microservices-challenge-network
     depends_on:
       - config-service
 
@@ -28,49 +24,37 @@ services:
     image: gateway-service-image:latest
     ports:
       - "8080:8080"
-    networks:
-      - microservices-challenge-network
     depends_on:
       - config-service
       - discovery-service
 
   # PostgreSQL Database
-  # postgres:
-  #   image: postgres:latest
-  #   environment:
-  #     POSTGRES_DB: microservices
-  #     POSTGRES_USER: db_user
-  #     POSTGRES_PASSWORD: db_password
-  #   ports:
-  #     - "5432:5432"
-  #   networks:
-  #     - microservices-challenge-network
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: microservices
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_password
+    ports:
+      - "5432:5432"
 
   # Main Service (sum-calculator-service)
-  #sum-calculator-service:
-  #  image: sum-calculator-service-image:latest
-  #  ports:
-  #    - "9090:9090"
-  #  networks:
-  #    - microservices-challenge-network
-  #  depends_on:
-  #    - config-service
-  #    - discovery-service
-  #    - gateway-service
-  #    - postgres
+  sum-calculator-service:
+    image: sum-calculator-service-image:latest
+    ports:
+      - "9090:9090"
+    depends_on:
+      - config-service
+      - discovery-service
+      - gateway-service
+      - postgres
 
   # Percentage Service
   # percentage-service:
   #  image: percentage-service-image:latest
   #  ports:
   #    - "7070:7070"
-  #  networks:
-  #    - microservices-challenge-network
   #  depends_on:
   #    - config-service
   #    - discovery-service
   #    - gateway-service
-
-networks:
-  microservices-challenge-network:
-    driver: bridge

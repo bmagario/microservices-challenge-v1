@@ -20,7 +20,7 @@ spring:
         - id: sum-calculator-service
           uri: lb://sum-calculator-service
           predicates:
-            - Path=/sumCalculator/**
+            - Path=/sum-calculator/**
         - id: percentage-service
           uri: lb://percentage-service
           predicates:
